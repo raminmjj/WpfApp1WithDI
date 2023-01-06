@@ -27,16 +27,13 @@ namespace WpfApp1WithDI
         // Otherwise, move the private default constructor code to this constructor).
         public Page1(IPage1ViewModel page1ViewModel) : this()
         {
-            this.Page1ViewModel = page1ViewModel;
             this.DataContext = this.Page1ViewModel;
-        }
-
-        private Page1()
-        {
-            InitializeComponent();
+            this.Page1ViewModel = page1ViewModel;
             Initialize();
         }
 
+        private Page1() => InitializeComponent();
+        
         private void Initialize()
         {
             this.Page1ViewModel.GetTitle();

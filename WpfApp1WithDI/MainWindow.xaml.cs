@@ -20,9 +20,10 @@ namespace WpfApp1WithDI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(Home homePage)
         {
             InitializeComponent();
+            mainFrame.Content = homePage;
         }
     }
 }
