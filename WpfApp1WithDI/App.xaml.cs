@@ -1,13 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace WpfApp1WithDI
@@ -20,7 +15,18 @@ namespace WpfApp1WithDI
         public IServiceProvider ServiceProvider { get; set; }
         public IConfiguration Configuration { get; set; }
 
-        protected override void OnStartup(StartupEventArgs e)
+        private void ConfigureServices(ServiceCollection serviceCollection)
+        {
+            serviceCollection.AddTransient<IPage1ViewModel, Page1ViewModel>();
+            serviceCollection.AddTransient(typeof(MainWindow));
+
+            serviceCollection.AddTransient<Home>();
+            serviceCollection.AddTransient<Page1>();
+            serviceCollection.AddSingleton<Func<Page1>>(serviceProvider => serviceProvider.GetService<Page1>);
+
+        }
+
+        private void Application_Startup(object sender, StartupEventArgs e)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -34,16 +40,6 @@ namespace WpfApp1WithDI
             ServiceProvider = serviceCollection.BuildServiceProvider();
             var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
-        }
-
-        private void ConfigureServices(ServiceCollection serviceCollection)
-        {
-            serviceCollection.AddTransient<IPage1ViewModel, Page1ViewModel>();
-            serviceCollection.AddTransient(typeof(MainWindow));
-
-            serviceCollection.AddTransient<Page1>();
-            serviceCollection.AddSingleton<Func<Page1>>(serviceProvider => serviceProvider.GetService<Page1>);
-
         }
     }
 }

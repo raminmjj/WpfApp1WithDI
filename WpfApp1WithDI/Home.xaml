@@ -9,6 +9,9 @@
       Title="Home">
 
     <Grid>
-        <Button Width="100" Height="50" Click="Button_Click">Page1</Button>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" FontSize="48">Home</TextBlock>
+            <Button Width="100" Height="50" Click="Button_Click" Margin="10">Page1</Button>
+        </StackPanel>
     </Grid>
 </Page>
