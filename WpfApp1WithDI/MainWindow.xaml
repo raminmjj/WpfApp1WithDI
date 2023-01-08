@@ -21,6 +21,6 @@
             </MenuItem>
         </Menu>
 
-        <Frame x:Name="mainFrame" Grid.Row="1" Grid.Column="0" NavigationUIVisibility="Hidden" />
+        <Frame x:Name="mainFrame" Grid.Row="1" Grid.Column="0" NavigationUIVisibility="Automatic" />
     </Grid>
 </Window>

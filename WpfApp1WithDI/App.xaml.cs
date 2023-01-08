@@ -22,7 +22,9 @@ namespace WpfApp1WithDI
 
             serviceCollection.AddTransient<Home>();
             serviceCollection.AddTransient<Page1>();
+            serviceCollection.AddTransient<Page2>();
             serviceCollection.AddSingleton<Func<Page1>>(serviceProvider => serviceProvider.GetService<Page1>);
+            serviceCollection.AddSingleton<Func<Page2>>(serviceProvider => serviceProvider.GetService<Page2>);
 
         }
 
